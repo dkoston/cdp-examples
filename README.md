@@ -1,5 +1,7 @@
 # cdp-examples
 
+[![CircleCI](https://circleci.com/gh/dkoston/cdp-examples.svg?style=svg)](https://circleci.com/gh/dkoston/cdp-examples)
+
 Some real world examples of using github.com/mafredri/cdp for browser automation
 
 

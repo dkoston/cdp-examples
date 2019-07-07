@@ -1,13 +1,16 @@
 package logger
 
 import (
-	"github.com/op/go-logging"
 	"os"
 	"strings"
+
+	"github.com/op/go-logging"
 )
 
 var logger *logging.Logger
 
+// Get gives back a new logging.Logger instance configured to our specs
+// or the existing instance
 func Get() *logging.Logger {
 	if logger != nil {
 		return logger

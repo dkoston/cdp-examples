@@ -2,6 +2,7 @@ package browser
 
 import (
 	"context"
+
 	"github.com/dkoston/cdp-examples/src/logger"
 	"github.com/mafredri/cdp"
 	"github.com/mafredri/cdp/devtool"
@@ -9,14 +10,11 @@ import (
 	"github.com/mafredri/cdp/rpcc"
 )
 
-const devToolsPort = "9222"
-
-
 // ConnectCDP provides a connection to dev tools via remote debugging port, and a cdp.Client instance
 // The cdp.Client will cause Chrome to open the URL specified
 func ConnectCDP(ctx context.Context, url string) (conn *rpcc.Conn, c *cdp.Client, err error) {
 	// Use the DevTools HTTP/JSON API to manage targets (e.g. pages, webworkers).
-	devt := devtool.New("http://127.0.0.1:" + devToolsPort)
+	devt := devtool.New("http://127.0.0.1:9222")
 	pt, err := devt.Get(ctx, devtool.Page)
 	if err != nil {
 		pt, err = devt.Create(ctx)

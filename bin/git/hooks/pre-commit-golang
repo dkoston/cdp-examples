@@ -29,9 +29,12 @@ do
         LINTERRORS=true
     fi
 
-    go vet "${FILE}"
-    if [[ $? != 0 ]]; then
-        VETERRORS=true
+    # vet everything except test files
+    if ! [[ "${FILE}" == *"_test.go"* ]]; then
+        go vet "${FILE}"
+        if [[ $? != 0 ]]; then
+            VETERRORS=true
+        fi
     fi
 done
 

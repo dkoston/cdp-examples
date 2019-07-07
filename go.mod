@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/davecgh/go-spew v1.1.1
+	github.com/google/go-cmp v0.3.0 // indirect
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/mafredri/cdp v0.23.4

@@ -2,17 +2,18 @@ package browser
 
 import (
 	"bytes"
-	"github.com/dkoston/cdp-examples/src/logger"
 	"os"
 	"os/exec"
 	"runtime"
+
+	"github.com/dkoston/cdp-examples/src/logger"
 )
 
 // LaunchChrome will launch chrome on a mac with remote debugging open on port 9222
 func LaunchChrome() {
 	readBuffer := bytes.Buffer{}
 
-	cmd := exec.Command(getChromePath(), "--remote-debugging-port="+devToolsPort)
+	cmd := exec.Command(getChromePath(), "--remote-debugging-port=9222")
 	cmd.Stdout = &readBuffer
 	cmd.Stderr = os.Stderr
 
@@ -55,7 +56,7 @@ func getPathMac() string {
 func getPathWindows() string {
 	possiblePaths := []string{
 		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", // Windows 10
-		"C:\\Program Files (x86)\\Google\\Application\\chrome.exe", // Windows 7
+		"C:\\Program Files (x86)\\Google\\Application\\chrome.exe",         // Windows 7
 	}
 
 	for i := 0; i < len(possiblePaths); i++ {

@@ -3,13 +3,14 @@ package main
 import (
 	"context"
 	"errors"
+	"net/http"
+	"os"
+	"time"
+
 	"github.com/dkoston/cdp-examples/src/browser"
 	"github.com/dkoston/cdp-examples/src/cookies"
 	"github.com/dkoston/cdp-examples/src/logger"
 	"github.com/jessevdk/go-flags"
-	"net/http"
-	"os"
-	"time"
 )
 
 const version = "0.0.1"
@@ -37,7 +38,6 @@ type CookiesCommand struct {
 	Domain string `short:"d" long:"domain" description:"limit cookies to a specific domain name" optional:"true" env:"COOKIE_DOMAIN"`
 }
 
-
 func main() {
 	var opts CommandLineOptions
 	parser := flags.NewParser(&opts, flags.Default)
@@ -45,7 +45,6 @@ func main() {
 	handleCliParseError(parser, err)
 
 	log := logger.Get()
-
 
 	// Launch a chrome instance with debug port open
 	go browser.LaunchChrome()
@@ -60,7 +59,6 @@ func main() {
 	conn, c, err := browser.ConnectCDP(ctx, domain)
 
 	var browserCookies []*http.Cookie
-
 
 	if opts.Cookies.Domain != "" {
 		browserCookies, err = cookies.GetCookiesForDomain(ctx, c.Network, opts.Cookies.Domain)
@@ -84,7 +82,6 @@ func main() {
 	}
 }
 
-
 // handleCliParseError handles errors resulting from the parsing of our command line options
 // by either printing out our version string, or printing the errors
 func handleCliParseError(parser *flags.Parser, err error) {
@@ -99,4 +96,3 @@ func handleCliParseError(parser *flags.Parser, err error) {
 		os.Exit(1)
 	}
 }
-
